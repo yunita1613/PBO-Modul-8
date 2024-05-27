@@ -1,0 +1,83 @@
+
+Setting environment for using XAMPP for Windows.
+ASUS@DESKTOP-811NQR0 c:\xampp
+# mysql -u root -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 75
+Server version: 10.4.21-MariaDB mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> use pbo;
+Database changed
+MariaDB [pbo]> desc matakuliah;
++---------+-------------+------+-----+---------+----------------+
+| Field   | Type        | Null | Key | Default | Extra          |
++---------+-------------+------+-----+---------+----------------+
+| id      | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama_mk | varchar(20) | YES  |     | NULL    |                |
+| sks     | varchar(1)  | YES  |     | NULL    |                |
++---------+-------------+------+-----+---------+----------------+
+3 rows in set (0.132 sec)
+
+MariaDB [pbo]> desc nilai;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| id            | int(11)     | NO   | PRI | NULL    | auto_increment |
+| mahasiswa_id  | varchar(20) | YES  | MUL | NULL    |                |
+| matakuliah_id | varchar(20) | YES  | MUL | NULL    |                |
+| nilai         | int(11)     | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.128 sec)
+
+MariaDB [pbo]> desc student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(20) | YES  |     | NULL    |                |
+| nim   | varchar(15) | YES  |     | NULL    |                |
+| prodi | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.042 sec)
+
+MariaDB [pbo]> alter table student change Student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '' at line 1
+MariaDB [pbo]> alter table student rename\ Student;
+ERROR: Unknown command '\ '.
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '\ Student' at line 1
+MariaDB [pbo]> alter table student rename Student;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [pbo]> desc Student;
++-------+-------------+------+-----+---------+----------------+
+| Field | Type        | Null | Key | Default | Extra          |
++-------+-------------+------+-----+---------+----------------+
+| id    | int(11)     | NO   | PRI | NULL    | auto_increment |
+| nama  | varchar(20) | YES  |     | NULL    |                |
+| nim   | varchar(15) | YES  |     | NULL    |                |
+| prodi | varchar(30) | YES  |     | NULL    |                |
++-------+-------------+------+-----+---------+----------------+
+4 rows in set (0.316 sec)
+
+MariaDB [pbo]> alter table matakuliah rename Matakuliah;
+Query OK, 0 rows affected (0.001 sec)
+
+MariaDB [pbo]> alter table nilai rename Nilai;
+Query OK, 0 rows affected (0.000 sec)
+
+MariaDB [pbo]> show tables;
++---------------+
+| Tables_in_pbo |
++---------------+
+| matakuliah    |
+| nilai         |
+| student       |
++---------------+
+3 rows in set (0.003 sec)
+
+MariaDB [pbo]>
